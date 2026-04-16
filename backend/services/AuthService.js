@@ -7,7 +7,7 @@ export class AuthService {
       throw new Error('Todos los campos son obligatorios')
 
     const existingUser = await User.findOne({ where: { email } })
-    if (existingUser) throw new Error('El usuario ya existe')
+    if (existingUser) throw new Error('Este correo ya está registrado')
 
     try {
       const hashedPassword = await bcrypt.hash(password, 10)

@@ -10,7 +10,7 @@ export default class AuthController {
         .status(201)
         .json({ message: 'Usuario registrado correctamente', data: user })
     } catch (err) {
-      res.status(500).json({ message: err.message })
+      res.status(400).json({ error: err.message })
     }
   }
 
@@ -41,7 +41,7 @@ export default class AuthController {
 
       res.status(200).json({ message: 'Usuario logueado correctamente' })
     } catch (err) {
-      res.status(401).json({ message: err.message })
+      res.status(401).json({ error: err.message })
     }
   }
 }

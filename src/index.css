@@ -7,6 +7,7 @@
   --color-bg: var(--color-bg);
   --color-danger: var(--color-danger);
   --color-secondary: var(--color-secondary);
+  --color-success: var(--color-success);
 }
 
 :root {
@@ -14,6 +15,7 @@
   --color-secondary: #fff;
   --color-bg: #09f;
   --color-danger: #f00;
+  --color-success: #126e12;
 }
 
 .dark {
@@ -21,6 +23,7 @@
   --color-secondary: #000;
   --color-bg: #09f;
   --color-danger: #f00;
+  --color-success: rgb(1, 255, 1);
 }
 
 body {
@@ -44,7 +47,7 @@ form input {
 }
 
 form button {
-  @apply bg-bg hover:bg-bg/80 mt-2 rounded-md px-2 py-1 text-white transition-all duration-300;
+  @apply bg-bg hover:bg-bg/80 mt-2 rounded-md px-2 py-1 text-white transition-all duration-300 disabled:cursor-not-allowed disabled:hover:bg-bg disabled:opacity-50;
 }
 
 form p:last-of-type {
