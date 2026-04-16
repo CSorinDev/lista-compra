@@ -5,6 +5,7 @@ import { PORT, CORS_ORIGIN } from './config/config.js'
 import sequelize from './database/database.js'
 import seed from './database/seeds.js'
 import cookieParser from 'cookie-parser'
+import './models/relations.js'
 
 const app = express()
 
