@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize'
 import sequelize from '../database/database.js'
 
-export const User = sequelize.define('User', {
+const User = sequelize.define('User', {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -17,7 +17,7 @@ export const User = sequelize.define('User', {
     allowNull: false,
   },
   password: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING, 
     allowNull: false,
   },
   role: {
@@ -26,3 +26,5 @@ export const User = sequelize.define('User', {
     defaultValue: 'user',
   },
 })
+
+export default User

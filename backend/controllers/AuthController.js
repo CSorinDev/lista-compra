@@ -1,5 +1,6 @@
-import { AuthService } from '../services/AuthService.js'
-import crypto from 'crypto' 
+import User from '../models/User.js'
+import AuthService from '../services/AuthService.js'
+import crypto from 'crypto'
 
 export default class AuthController {
   static async register(req, res) {
@@ -22,7 +23,8 @@ export default class AuthController {
       const csrfToken = crypto.randomBytes(32).toString('hex')
 
       // Auth token (http only)
-      res.cookie('auth_token', user.token, {
+      console.log(user.token)
+      res.cookie('auth_token', user.id, {
         httpOnly: true,
         path: '/',
         sameSite: 'lax',
@@ -42,6 +44,33 @@ export default class AuthController {
       res.status(200).json({ message: 'Usuario logueado correctamente' })
     } catch (err) {
       res.status(401).json({ error: err.message })
+    }
+  }
+
+  static async me(req, res) {
+    try {
+      const userId = req.cookies.auth_token
+      if (!userId) return res.status(401).json({ message: 'No autenticado' })
+
+      const user = await User.findByPk(userId, {
+        attributes: { exclude: ['password'] },
+      })
+
+      if (!user)
+        return res.status(401).json({ message: 'Usuario no encontrado' })
+
+      res.status(200).json(user)
+    } catch (err) {
+      res.status(500).json({ message: err.message })
+    }
+  }
+
+  static async logout(req, res) {
+    try {
+      const user = await AuthService.logout(req, res)
+      res.status(200).json({ message: 'Usuario deslogueado correctamente' })
+    } catch (err) {
+      res.status(500).json({ message: err.message })
     }
   }
 }

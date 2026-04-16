@@ -4,10 +4,12 @@ import routes from './routes/routes.js'
 import { PORT, CORS_ORIGIN } from './config/config.js'
 import sequelize from './database/database.js'
 import seed from './database/seeds.js'
+import cookieParser from 'cookie-parser'
 
 const app = express()
 
 app.use(express.json())
+app.use(cookieParser())
 app.use(
   cors({
     origin: CORS_ORIGIN,

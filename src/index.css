@@ -20,9 +20,9 @@
 
 .dark {
   --color-primary: #fff;
-  --color-secondary: #000;
+  --color-secondary: #222;
   --color-bg: #09f;
-  --color-danger: #f00;
+  --color-danger: rgb(255, 0, 0);
   --color-success: rgb(1, 255, 1);
 }
 

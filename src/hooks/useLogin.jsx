@@ -1,7 +1,9 @@
 import { useActionState } from 'react'
 import AuthService from '../services/AuthService'
+import { useAuth } from '../contexts/AuthContext'
 
 export default function useLogin() {
+  const { setUser } = useAuth()
   const [state, loginAction, loading] = useActionState(handleLogin, {
     success: false,
     error: null,
@@ -16,7 +18,8 @@ export default function useLogin() {
     }
 
     try {
-      await AuthService.login(email, password)
+      const data = await AuthService.login(email, password)
+      setUser(data.user || data) // Dependiendo de cómo devuelvas los datos
       return { success: true, error: null }
     } catch (err) {
       return { success: false, error: err.message }

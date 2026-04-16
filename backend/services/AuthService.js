@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt'
-import { User } from '../models/User.js'
+import User from '../models/User.js'
 
-export class AuthService {
+class AuthService {
   static async register(name, email, password) {
     if (!name || !email || !password)
       throw new Error('Todos los campos son obligatorios')
@@ -36,4 +36,16 @@ export class AuthService {
 
     return existingUser
   }
+
+  static async logout(req, res) {
+    try {
+      res.clearCookie('auth_token')
+      res.clearCookie('csrf_token')
+      return { success: true }
+    } catch (err) {
+      throw new Error('Error al cerrar sesión')
+    }
+  }
 }
+
+export default AuthService

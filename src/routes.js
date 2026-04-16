@@ -2,6 +2,7 @@ import HomePage from './pages/HomePage.jsx'
 import Layout from './layouts/Layout.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
+import GuestRoute from './layouts/GuestRoute.jsx'
 
 export const routes = [
   {
@@ -11,6 +12,11 @@ export const routes = [
         index: true,
         Component: HomePage,
       },
+    ],
+  },
+  {
+    Component: GuestRoute,
+    children: [
       {
         path: '/login',
         Component: LoginPage,
@@ -18,7 +24,7 @@ export const routes = [
       {
         path: '/register',
         Component: RegisterPage,
-      }
+      },
     ],
   },
 ]
