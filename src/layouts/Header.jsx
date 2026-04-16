@@ -9,7 +9,10 @@ export default function Header() {
   const { theme, toggleTheme } = useTheme()
   const { user, loading: authLoading } = useAuth()
   const navLinks = user
-    ? [{ name: 'Inicio', path: '/' }]
+    ? [
+        { name: 'Inicio', path: '/' },
+        { name: 'Mis Listas', path: '/listas' },
+      ]
     : [
         { name: 'Inicio', path: '/' },
         { name: 'Iniciar Sesión', path: '/login' },
@@ -17,7 +20,7 @@ export default function Header() {
   const { logoutAction, loading: logoutLoading } = useLogout()
 
   if (authLoading || logoutLoading) return <Loading />
-  
+
   return (
     <header className="flex items-center justify-between p-4">
       <nav className="w-full">
